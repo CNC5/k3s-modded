@@ -5,6 +5,7 @@
     - role: ansible_modules
     - role: k3s
     - role: prometheus
+    - role: helm
     - role: ingress
     - role: argocd
 #    - role: gitlab_runner

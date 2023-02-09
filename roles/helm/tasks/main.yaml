@@ -1,0 +1,14 @@
+- name: Download and unpack helm
+  unarchive:
+    src: "https://get.helm.sh/helm-v{{ helm_version }}-linux-amd64.tar.gz"
+    dest: ~/
+    remote_src: yes
+
+- name: Copy helm binary to /bin
+  copy:
+    src: ~/linux-amd64/helm
+    dest: /bin/helm
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0755'
+    remote_src: yes

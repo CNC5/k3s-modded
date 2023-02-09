@@ -6,5 +6,6 @@
   roles:
     - role: reset_ingress
     - role: reset_argocd
+    - role: reset_helm
     - role: reset_k3s
     - role: reset_prometheus
