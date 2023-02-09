@@ -1,0 +1,10 @@
+---
+- name: Install pip
+  yum:
+    name: python3-pip
+    state: present
+
+- name: Install openshift
+  pip:
+    name: openshift==0.9.0
+    state: present

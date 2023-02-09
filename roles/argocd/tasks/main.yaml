@@ -1,0 +1,38 @@
+
+- name: Download argocd yaml
+  get_url:
+    url: https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+    dest: ~/argocd-install.yaml
+    mode: '0644'
+
+- name: Create argocd namespace
+  k8s:
+    name: argocd
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Deploy argocd
+  k8s:
+    wait: yes
+    wait_timeout: 300
+    namespace: argocd
+    state: present
+    src: ~/argocd-install.yaml
+
+- name: Get argocd pass
+  shell: kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath='{.data}'
+  register: argocd_secret
+
+- name: Print argocd pass
+  debug:
+    msg: "Argocd initial password: {{ argocd_pass_encoded['password'] | b64decode}}"
+  vars:
+    argocd_pass_encoded: "{{ argocd_secret['stdout'] | from_json }}"
+
+- name: Write argocd pass
+  copy:
+    content: "{{ argocd_pass_encoded['password'] | b64decode}}"
+    dest: ~/argocd-pass
+  vars:
+    argocd_pass_encoded: "{{ argocd_secret['stdout'] | from_json }}"

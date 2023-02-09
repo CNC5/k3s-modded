@@ -1,0 +1,16 @@
+- stat:
+    path: ~/ingress-install.yaml
+  register: p
+
+- name: Delete ingress
+  k8s:
+    wait: no
+    state: absent
+    src: ~/ingress-install.yaml
+  when: p.stat.exists
+
+- name: Delete ingress yaml
+  file:
+    state: absent
+    path: ~/ingress-install.yaml
+  when: p.stat.exists

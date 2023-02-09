@@ -1,0 +1,10 @@
+---
+
+- hosts: master
+  roles:
+    - role: ansible_modules
+    - role: k3s
+    - role: ingress
+    - role: argocd
+#    - role: gitlab_runner
+    - role: prometheus

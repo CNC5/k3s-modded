@@ -1,0 +1,12 @@
+---
+- name: Download nginx ingress yaml
+  get_url:
+    url: https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/baremetal/deploy.yaml
+    dest: ~/ingress-install.yaml
+    mode: '0644'
+
+- name: Deploy nginx ingress
+  k8s:
+    wait: no
+    state: present
+    src: ~/ingress-install.yaml

@@ -1,0 +1,31 @@
+- stat:
+    path: ~/argocd-install.yaml
+  register: p
+
+- name: Delete argocd
+  k8s:
+    wait: yes
+    namespace: argocd
+    state: absent
+    src: ~/argocd-install.yaml
+  when: p.stat.exists
+
+- name: Delete argocd namespace
+  k8s:
+    name: argocd
+    api_version: v1
+    kind: Namespace
+    state: absent
+  when: p.stat.exists
+
+- name: Delete argocd yaml
+  file:
+    state: absent
+    path: ~/argocd-install.yaml
+  when: p.stat.exists
+
+- name: Delete argocd pass
+  file:
+    state: absent
+    path: ~/argocd-pass
+  when: p.stat.exists

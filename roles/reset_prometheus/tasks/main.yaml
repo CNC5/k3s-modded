@@ -1,0 +1,56 @@
+- name: Check if Service Exists
+  stat:
+    path: /bin/prometheus
+  register: prometheus_status
+
+- name: Disable and stop prometheus service
+  systemd:
+    name: prometheus
+    daemon_reload: yes
+    state: stopped
+    enabled: no
+  when: prometheus_status.stat.exists
+
+- name: Disable and stop node exporter service
+  systemd:
+    name: node_exporter
+    daemon_reload: yes
+    state: stopped
+    enabled: no
+  when: prometheus_status.stat.exists
+
+- name: Delete promtool
+  file:
+    state: absent
+    path: /bin/promtool
+  when: prometheus_status.stat.exists
+
+- name: Delete prometheus service
+  file:
+    state: absent
+    path: "{{ systemd_dir }}/prometheus.service"
+  when: prometheus_status.stat.exists
+
+- name: Delete prometheus
+  file:
+    state: absent
+    path: /bin/prometheus
+  when: prometheus_status.stat.exists
+
+- name: Delete prometheus service
+  file:
+    state: absent
+    path: "{{ systemd_dir }}/node_exporter.service"
+  when: prometheus_status.stat.exists
+
+- name: Delete node exporter
+  file:
+    state: absent
+    path: /bin/node_exporter
+  when: prometheus_status.stat.exists
+
+- name: Delete configs
+  file:
+    state: absent
+    path: /etc/prometheus/prometheus.yaml
+  when: prometheus_status.stat.exists
