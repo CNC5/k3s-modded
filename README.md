@@ -6,14 +6,11 @@ k3s + prometheus + gitlab runner + argocd + custom ingress; deployed by ansible
 * reset.yaml destroys everything
 * soft-reset.yaml destroys all deployments
 
-# done list
-(setup - bare metal install)
-setup       - k3s, traefik disabled
-setup       - prometheus
-deployment  - argocd
-deployment  - nginx ingress
-
-
 # todo list
-deployment  - gitlab-runner
-switch      - nginx -> openresty
+(setup - bare metal install)
+- [ ] deployment  - gitlab-runner
+- [ ] switch      - nginx -> openresty
+- [x] setup       - k3s, traefik disabled
+- [x] setup       - prometheus
+- [x] deployment  - argocd
+- [x] deployment  - nginx ingress
