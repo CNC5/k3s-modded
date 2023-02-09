@@ -1,4 +1,5 @@
-- stat:
+- name: Check if argocd should be deleted
+  stat:
     path: ~/argocd-install.yaml
   register: p
 

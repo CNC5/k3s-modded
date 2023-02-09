@@ -15,7 +15,6 @@
 - name: Deploy argocd
   k8s:
     wait: yes
-    wait_timeout: 300
     namespace: argocd
     state: present
     src: ~/argocd-install.yaml
