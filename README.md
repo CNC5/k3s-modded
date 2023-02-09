@@ -5,6 +5,8 @@ k3s + prometheus + gitlab runner + argocd + custom ingress; deployed by ansible
 * site.yaml deploys everything
 * reset.yaml destroys everything
 * soft-reset.yaml destroys all deployments
+* hosts config is in inventory/master/hosts.ini
+* misc config is in inventory/master/group_vars/all.yaml
 
 # todo list
 (setup - bare metal install)
