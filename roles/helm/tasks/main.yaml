@@ -12,3 +12,8 @@
     group: "{{ ansible_user }}"
     mode: '0755'
     remote_src: yes
+
+- name: Cleanup
+  file:
+    state: absent
+    path: ~/linux-amd64
