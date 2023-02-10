@@ -1,4 +1,5 @@
-- stat:
+- name: Check if nginx is present
+  stat:
     path: ~/ingress-install.yaml
   register: p
 
