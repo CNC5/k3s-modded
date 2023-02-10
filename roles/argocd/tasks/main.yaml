@@ -18,6 +18,7 @@
     namespace: argocd
     state: present
     src: ~/argocd-install.yaml
+  ignore_errors: true
 
 - name: Get argocd pass
   shell: kubectl get secret argocd-initial-admin-secret -n argocd -o jsonpath='{.data}'
