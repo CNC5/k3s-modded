@@ -1,5 +1,5 @@
 # k3s-modded (W.I.P.)
-k3s + prometheus + helm + gitlab runner + argocd + custom ingress; deployed by ansible
+k3s + prometheus + helm + argocd + custom ingress; deployed by ansible
 
 # brief
 * site.yaml deploys everything
@@ -10,8 +10,6 @@ k3s + prometheus + helm + gitlab runner + argocd + custom ingress; deployed by a
 
 # todo list
 (setup - bare metal install)
-- [ ] deployment  - gitlab-runner
-- [ ] switch      - nginx -> openresty
 - [x] setup       - k3s, traefik disabled
 - [x] setup       - prometheus
 - [x] setup       - helm
