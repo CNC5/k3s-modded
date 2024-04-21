@@ -1,4 +1,4 @@
-# k3s-modded (W.I.P.)
+# k3s-modded
 k3s + prometheus + helm + argocd + custom ingress; deployed by ansible
 
 # brief
